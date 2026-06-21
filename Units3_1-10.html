@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+  <!-- ============================================================
+     ADVENTURE ISLAND — units.html
+     ============================================================
+     CUSTOMISE THIS SECTION:
+       • units[]  — label, url, colour for each button
+       • --bg     — background gradient (one line, same everywhere)
+
+     GRID LAYOUT:
+       • Landscape tablet/desktop → 5 × 4
+       • Landscape iPhone         → 4 × 5
+       • Portrait tablet/desktop  → 2 × 10
+       • Portrait iPhone          → 2 × 10
+     ============================================================ -->
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0,
+          maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Units</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      :root {
+        --font-chalk:
+          "Chalkboard SE", "Chalkboard", "Comic Neue", "Comic Sans MS", cursive;
+        --bg: linear-gradient(to bottom, #e5aa60, #bb581c);
+        --colour-btn-border: #000000;
+      }
+
+      html {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        max-width: 100vw;
+      }
+
+      body {
+        font-family: var(--font-chalk);
+        background: var(--bg);
+        width: 100%;
+        max-width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* ----------------------------------------------------------
+         GRID WRAPPER
+      ---------------------------------------------------------- */
+      .grid-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      }
+
+      /* ----------------------------------------------------------
+         BUTTONS
+      ---------------------------------------------------------- */
+      .btn {
+        font-family: var(--font-chalk);
+        font-weight: bold;
+        color: yellow;
+        border: 2px solid var(--colour-btn-border);
+        border-radius: 10px;
+        text-decoration: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        overflow: hidden;
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-text-stroke: 2px orange;
+        transition:
+          transform 0.1s ease,
+          opacity 0.15s ease;
+      }
+
+      .btn:active {
+        transform: scale(0.97);
+        opacity: 0.85;
+      }
+
+      /* ----------------------------------------------------------
+         CORNER IMAGE
+      ---------------------------------------------------------- */
+      .corner-img {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        pointer-events: none;
+        z-index: 10;
+      }
+
+      /* ----------------------------------------------------------
+         LANDSCAPE — 6 × 4
+      ---------------------------------------------------------- */
+      @media screen and (orientation: landscape) {
+        .grid-wrapper {
+          flex: 1;
+          padding: 1vh 2vw 2vh;
+        }
+
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(6, 1fr);
+          grid-template-rows: repeat(4, 1fr);
+          gap: clamp(4px, 1vw, 12px);
+          width: min(99vw, 1200px);
+          height: min(82vh, 650px);
+        }
+
+        .btn {
+          font-size: clamp(0.8rem, 5vw, 8rem);
+        }
+        .btn-small {
+          font-size: clamp(1rem, 4vw, 6rem) !important;
+        }
+
+        .corner-img {
+          bottom: 0;
+          right: 0;
+          top: auto;
+          width: clamp(50px, 8vw, 110px);
+          margin-bottom: 30px;
+          margin-right: 80px;
+        }
+      }
+
+      /* ----------------------------------------------------------
+         LANDSCAPE IPHONE — 4 × 5  (max-height: 450px)
+      ---------------------------------------------------------- */
+      @media screen and (orientation: landscape) and (max-height: 450px) {
+        body {
+          overflow: hidden;
+          width: 100vw;
+          max-width: 100vw;
+        }
+
+        .grid-wrapper {
+          flex: 1 !important;
+          padding: 0 2vw 0 !important;
+        }
+
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr) !important;
+          grid-template-rows: repeat(6, 1fr) !important;
+          gap: clamp(2px, 0.5vw, 6px) !important;
+          width: min(96vw, 800px) !important;
+          height: min(64vh, 270px) !important;
+        }
+
+        .btn {
+          font-size: clamp(0.6rem, 3.5vw, 3rem) !important;
+        }
+
+        .corner-img {
+          display: none !important;
+        }
+      }
+
+      /* ----------------------------------------------------------
+         PORTRAIT — 2 × 10
+      ---------------------------------------------------------- */
+      @media screen and (orientation: portrait) {
+        body {
+          overflow-y: auto;
+          height: auto;
+          min-height: 100dvh;
+        }
+
+        .grid-wrapper {
+          padding: 2vw 4vw 4vw;
+        }
+
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          grid-template-rows: repeat(8, 1fr);
+          gap: clamp(6px, 2vw, 16px);
+          width: 100%;
+          max-width: 700px;
+        }
+
+        .btn {
+          font-size: clamp(1rem, 7vw, 4rem);
+          height: clamp(60px, 23vw, 110px);
+          width: 100%;
+        }
+        .btn-tiny {
+          font-size: clamp(1rem, 5vw, 3rem) !important;
+        }
+        .corner-img {
+          position: fixed;
+          bottom: 40px;
+          right: 120px;
+          top: auto;
+          width: clamp(50px, 11vw, 110px) !important;
+        }
+      }
+
+      /* ----------------------------------------------------------
+         PORTRAIT IPHONE — 2 × 10  (max-width: 430px)
+         To move grid up: decrease margin on .back-btn
+         To move grid down: increase margin on .back-btn
+      ---------------------------------------------------------- */
+      @media screen and (orientation: portrait) and (max-width: 430px) {
+        body {
+          overflow-y: auto;
+          height: auto;
+          min-height: 100dvh;
+        }
+
+        .grid-wrapper {
+          padding: 1vw 4vw 4vw !important;
+          padding-top: 2vh !important;
+        }
+
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr) !important;
+          grid-template-rows: repeat(8, 1fr) !important;
+          gap: clamp(4px, 1.5vw, 10px) !important;
+          width: 100% !important;
+          max-width: 100% !important;
+        }
+
+        .btn {
+          font-size: clamp(0.9rem, 7vw, 2.5rem) !important;
+          height: clamp(70px, 18vw, 100px) !important;
+        }
+        .btn-tiny {
+          font-size: clamp(0.7rem, 5vw, 2rem) !important;
+        }
+
+        .corner-img {
+          position: fixed;
+          bottom: 0 !important;
+          right: 0 !important;
+          top: auto;
+          width: clamp(30px, 6vw, 60px);
+          margin-bottom: 10px !important;
+          margin-right: 50px !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="grid-wrapper">
+      <div class="grid" id="main-grid"></div>
+    </div>
+
+    <img class="corner-img" src="images/Kevin3.png" alt="" aria-hidden="true" />
+
+    <script>
+      const units = [
+        {
+          label: "←",
+          url: "index.html",
+          colour: "rgba(0,0,0,0.4)",
+          border: "yellow",
+        },
+        {
+          label: "例",
+          url: "https://player.mediadelivery.net/play/586195/fddc24a5-07f2-47ad-82b2-899a1fa572ef",
+          colour: "#f5a54a",
+          font: "'Hiragino Sans', 'Noto Sans CJK JP', 'Yu Gothic', sans-serif",
+        },
+        {
+          label: "1a",
+          url: "https://player.mediadelivery.net/play/582514/64eca96c-55a6-40d8-890b-2d72a435b433",
+          colour: "#c26e12",
+        },
+        {
+          label: "1b",
+          url: "https://player.mediadelivery.net/play/582514/36ce805c-5df7-4734-9b20-71040631dfe5",
+          colour: "#e8891e",
+        },
+        {
+          label: "1c",
+          url: "https://player.mediadelivery.net/play/582514/2f15c345-e577-41d8-8ee3-fca9a90bbc58",
+          colour: "#c26e12",
+        },
+        {
+          label: "2a",
+          url: "https://player.mediadelivery.net/play/582514/7ebe7f84-4909-4bd9-b7fd-1a64893d4912",
+          colour: "#f5a54a",
+        },
+        {
+          label: "2L",
+          url: "https://player.mediadelivery.net/play/582514/7b8857ca-c3eb-4c84-80aa-b8158b40f8b7",
+          colour: "#e8891e",
+        },
+        {
+          label: "2b",
+          url: "https://player.mediadelivery.net/play/582514/836483ad-9ded-429c-8811-e6d23a50ceae",
+          colour: "#c26e12",
+        },
+        {
+          label: "3a",
+          url: "https://player.mediadelivery.net/play/582514/5221a399-8d1b-4ddd-8f61-19aa7e704ff6",
+          colour: "#e8891e",
+        },
+        {
+          label: "3b",
+          url: "https://player.mediadelivery.net/play/582514/837083ba-3435-4c07-941b-b2b4b51cf3b1",
+          colour: "#f5a54a",
+        },
+        {
+          label: "4",
+          url: "https://player.mediadelivery.net/play/582514/2c2c4e10-9b5d-4023-a91c-86cc2218f810",
+          colour: "#c26e12",
+        },
+        {
+          label: "5a",
+          url: "https://player.mediadelivery.net/play/582514/7b05e805-41a8-4f3f-9f12-03a68e429d4d",
+          colour: "#e8891e",
+        },
+        {
+          label: "5b",
+          url: "https://player.mediadelivery.net/play/582514/b750034c-c09a-4355-bee1-bbf1be524271",
+          colour: "#f5a54a",
+        },
+        {
+          label: "6a",
+          url: "https://player.mediadelivery.net/play/582514/006ff224-9a3e-441f-b412-81b41d715601",
+          colour: "#c26e12",
+        },
+        {
+          label: "6b",
+          url: "https://player.mediadelivery.net/play/582514/87951c75-e677-45c2-a39f-62696e2a3e0b",
+          colour: "#f5a54a",
+        },
+        {
+          label: "7",
+          url: "https://player.mediadelivery.net/play/582514/178ea98e-355d-4f7f-8d02-7a9b10c50807",
+          colour: "#e8891e",
+        },
+        {
+          label: "8a",
+          url: "https://player.mediadelivery.net/play/582514/68c17703-318a-44ca-9138-be4df6356dbc",
+          colour: "#c26e12",
+        },
+        {
+          label: "8b",
+          url: "https://player.mediadelivery.net/play/582514/04161c7c-551a-4c29-9595-ba3f060c16ca",
+          colour: "#f5a54a",
+        },
+        {
+          label: "9a",
+          url: "https://player.mediadelivery.net/play/582514/61c5d63e-9138-43b5-b1c7-8ba765f81d32",
+          colour: "#c26e12",
+        },
+        {
+          label: "9b",
+          url: "https://player.mediadelivery.net/play/582514/c5f0f211-00e6-4f1a-b884-ee4510d46656",
+          colour: "#e8891e",
+        },
+        {
+          label: "Review",
+          url: "https://player.mediadelivery.net/play/582514/c992e779-1824-4c89-8b04-87910d891567",
+          colour: "#f5a54a",
+          small: true,
+        },
+        {
+          label: "Test",
+          url: "https://player.mediadelivery.net/play/582514/6bd53857-f7fb-4586-9c43-9c9b025bb3be",
+          colour: "#c26e12",
+        },
+        {
+          label: "comic",
+          url: "https://player.mediadelivery.net/play/582514/67e5dfad-a621-444c-9aab-98ffbd7e8679",
+          colour: "#e8891e",
+        },
+      ];
+
+      function buildGrid() {
+        const grid = document.getElementById("main-grid");
+        grid.innerHTML = "";
+        units.forEach(function (unit) {
+          var link = document.createElement("a");
+          link.className = "btn";
+          link.href = unit.url;
+          link.style.backgroundColor = unit.colour;
+          if (unit.border) {
+            link.style.border = "2px solid " + unit.border;
+            link.style.color = "yellow";
+          }
+          if (unit.small) {
+            link.classList.add("btn-small");
+          }
+          if (unit.customClass) {
+            link.classList.add(unit.customClass);
+          }
+          link.textContent = unit.label;
+          if (unit.font) {
+            link.style.fontFamily = unit.font;
+          }
+          grid.appendChild(link);
+        });
+      }
+
+      buildGrid();
+
+      var resizeTimer;
+      window.addEventListener("resize", function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(buildGrid, 150);
+      });
+    </script>
+  </body>
+</html>
